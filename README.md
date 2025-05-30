@@ -20,20 +20,22 @@ Undersampling was initially tried but was replaced by oversampling as it showed 
 
 **2. Difficulties Encountered and Resolutions:**
 
-Target variable Type: At the begining of the project it was not clear to me why did the target variable EndDate had incompatible values like 'No' and 'dates' at the same time, but after some analysis it became clear the necessity to refactor it in a new variable Churn.
-Class Imbalance: The target variable (Churn) showed a moderate class imbalance, which could bias model predictions towards the majority class. To address this, I used RandomOverSampler to generate synthetic samples, ensuring balanced class distribution in the training data.
-Model Performance: Initial models (Random Forest with default parameters, LightGBM with default parameters) did not achieve the desired AUC-ROC score of 0.88 but gave a solid baseline to improve latter on. To achieve this, I optimized hyperparameters using Optuna, resulting in a significant improvement in the model's performance.
-Feature Engineering: Initially, features like Family and DigitalServices were created, hoping to improve model performance, but their contributions were close to zero, and they were ultimately removed. This demonstrates the need for careful feature selection and evaluation.
-Dataset Merging: There were slight challenges in merging the dataframes (especially internet and phone), as not every contract had internet or phone service. Carefully handling missing values was crucial to prevent issues during model training.
+- **Target variable Type:** At the begining of the project it was not clear to me why did the target variable EndDate had incompatible values like 'No' and 'dates' at the same time, but after some analysis it became clear the necessity to refactor it in a new variable Churn.
+- **Class Imbalance:** The target variable (Churn) showed a moderate class imbalance, which could bias model predictions towards the majority class. To address this, I used RandomOverSampler to generate synthetic samples, ensuring balanced class distribution in the training data.
+- **Model Performance:** Initial models (Random Forest with default parameters, LightGBM with default parameters) did not achieve the desired AUC-ROC score of 0.88 but gave a solid baseline to improve latter on. To achieve this, I optimized hyperparameters using Optuna, resulting in a significant improvement in the model's performance.
+- **Feature Engineering:** Initially, features like Family and DigitalServices were created, hoping to improve model performance, but their contributions were close to zero, and they were ultimately removed. This demonstrates the need for careful feature selection and evaluation.
+- **Dataset Merging:** There were slight challenges in merging the dataframes (especially internet and phone), as not every contract had internet or phone service. Carefully handling missing values was crucial to prevent issues during model training.
+
 **3. Key Steps in Solving the Task:**
 
-Addressing Class Imbalance: Using RandomOverSampler was a critical step to reduce bias during model training.
-Hyperparameter Tuning: Optuna significantly enhanced model performance by optimizing the LightGBM model's parameters after a small number of trials. Randomized Search with cross validation was not used due to previous experiencies that resulted in a huge ammount of compute power.
-Feature Engineering: Although not all features were successful, the process of creating features like ContractDuration helped improve the model's understanding of the data.
-Model Selection: Choosing a robust model like LightGBM and comparing it with a baseline model allowed for identifying opportunities for improvements and understanding the effectiveness of different techniques. XGBoost was not tested due to its incompatibility with hyperparameter tunning methods found in previuos sprints.
+- **Addressing Class Imbalance:** Using RandomOverSampler was a critical step to reduce bias during model training.
+- **Hyperparameter Tuning:** Optuna significantly enhanced model performance by optimizing the LightGBM model's parameters after a small number of trials. Randomized Search with cross validation was not used due to previous experiencies that resulted in a huge ammount of compute power.
+- **Feature Engineering:** Although not all features were successful, the process of creating features like ContractDuration helped improve the model's understanding of the data.
+- **Model Selection:** Choosing a robust model like LightGBM and comparing it with a baseline model allowed for identifying opportunities for improvements and understanding the effectiveness of different techniques. XGBoost was not tested due to its incompatibility with hyperparameter tunning methods found in previuos sprints.
+
 **4. Final Model and Quality Level:**
 
-Final Model: The final model is a LightGBM classifier with hyperparameters optimized using Optuna.
+- **Final Model:** The final model is a LightGBM classifier with hyperparameters optimized using Optuna.
 Quality Level: The model achieves an AUC-ROC score of over 0.9052, which significantly surpasses the project's minimum requirement of 0.88. This indicates a high level of accuracy and effectiveness in predicting customer churn.
 Conclusion:
 
